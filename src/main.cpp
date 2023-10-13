@@ -19,7 +19,6 @@ CANpack canpack;
 int cnt = 0;
 unsigned long long last_print_time = 0;
 
-
 // ----------------------------
 // CHANGE HERE TO SET ID 
 int ID = 1;
