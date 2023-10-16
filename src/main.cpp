@@ -18,10 +18,12 @@ CANpack canpack;
 
 int cnt = 0;
 unsigned long long last_print_time = 0;
+unsigned long long current_time = 0;
+
 
 // ----------------------------
 // CHANGE HERE TO SET ID 
-int ID = 1;
+int ID = 5;
 // ID range is 1 ~ 5
 // -----------------------------
 
@@ -57,29 +59,27 @@ void loop() {
         break;
     }
 
-    if(millis() > last_print_time + 100U) {
-        if(cnt % 4 == 0) {
-            UTHAPS::print("| ");
-            cnt = 0;
-        } else if(cnt % 4 == 1) {
-            UTHAPS::print("/ ");
-        } else if(cnt % 4 == 2) {
-            UTHAPS::print("- ");
-        } else if(cnt % 4 == 3) {
-            UTHAPS::print("\\ ");
-        }
-        bool ID1 = packID1.receiveState;
-        bool ID2 = packID2.receiveState;
-        bool ID3 = packID3.receiveState;
-        bool ID4 = packID4.receiveState;
-        bool ID5 = packID5.receiveState;
-        UTHAPS::println("1 : ",ID1,"2 : ",ID2,"3 : ",ID3,"4 : ",ID4,"5 : ",ID5);
+    // if(millis() > last_print_time + 100U) {
+    bool ID1 = packID1.receiveState;
+    bool ID2 = packID2.receiveState;
+    bool ID3 = packID3.receiveState;
+    bool ID4 = packID4.receiveState;
+    bool ID5 = packID5.receiveState;
+    UTHAPS::println("This is  MASTER : ","NO1 >> ",ID1,"NO2 >> ",ID2,"NO3 >> ",ID3,"NO4 >> ",ID4,"NO5 >> ",ID5);
+    if (cnt % 1000000 == 0){
+        UTHAPS::println("=============== reset called ===============");
         packID1.receiveState = false;
         packID2.receiveState = false;
         packID3.receiveState = false;
         packID4.receiveState = false;
         packID5.receiveState = false;
-        cnt ++;
     }
-
+    cnt ++;
+    // 1secのdelay
+    // current_time = millis();
+    // while(1){
+    //     if ((millis() - current_time) > 526){
+    //         break;
+    //     }
+    // }
 }
