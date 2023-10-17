@@ -23,7 +23,7 @@ unsigned long long current_time = 0;
 
 // ----------------------------
 // CHANGE HERE TO SET ID 
-int ID = 5;
+int ID = 1;
 // ID range is 1 ~ 5
 // -----------------------------
 
@@ -66,7 +66,7 @@ void loop() {
     bool ID4 = packID4.receiveState;
     bool ID5 = packID5.receiveState;
     UTHAPS::println("This is  MASTER : ","NO1 >> ",ID1,"NO2 >> ",ID2,"NO3 >> ",ID3,"NO4 >> ",ID4,"NO5 >> ",ID5);
-    if (cnt % 1000000 == 0){
+    if (cnt % 100 == 0){
         UTHAPS::println("=============== reset called ===============");
         packID1.receiveState = false;
         packID2.receiveState = false;
