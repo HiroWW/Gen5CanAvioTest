@@ -23,7 +23,7 @@ unsigned long long current_time = 0;
 
 // ----------------------------
 // CHANGE HERE TO SET ID 
-int ID = 1;
+int ID = 2;
 // ID range is 1 ~ 5
 // -----------------------------
 
@@ -32,28 +32,33 @@ void setup() {
 }
 
 void loop() {
-    Node.events();
+    // Node.events();
     
     switch (ID){
     case 1:
+        // Master1
         packID1.receiveState = 1;
         canpack.CANsend((ID-1),&packID1);
         break;
     case 2:
+        // INTERFACE
         packID2.receiveState = 1;
-        canpack.CANsend((ID-1),&packID2);
+        // canpack.CANsend((ID-1),&packID2);
         break;
     case 3:
+        // RIGHT
         packID3.receiveState = 1;
         canpack.CANsend((ID-1),&packID3);
         break;
     case 4:
+        // MASTER2
         packID4.receiveState = 1;
         canpack.CANsend((ID-1),&packID4);
         break;
     case 5:
+        // CENTER 
         packID5.receiveState = 1;
-        canpack.CANsend((ID-1),&packID5);
+        // canpack.CANsend((ID-1),&packID5);
         break;    
     default:
         break;
@@ -65,8 +70,8 @@ void loop() {
     bool ID3 = packID3.receiveState;
     bool ID4 = packID4.receiveState;
     bool ID5 = packID5.receiveState;
-    UTHAPS::println("This is  MASTER : ","NO1 >> ",ID1,"NO2 >> ",ID2,"NO3 >> ",ID3,"NO4 >> ",ID4,"NO5 >> ",ID5);
-    if (cnt % 100 == 0){
+    UTHAPS::println("IF RX STATE : ","MASTER1 >> ",ID1,"MASTER2 >> ",ID4,"CENTER >> ",ID5,"IF >> ",ID2,"RIGHT >> ",ID3);
+    if (cnt % 10 == 0){
         UTHAPS::println("=============== reset called ===============");
         packID1.receiveState = false;
         packID2.receiveState = false;
